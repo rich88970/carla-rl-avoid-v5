@@ -1,0 +1,20 @@
+diff --git a/easycarla/envs/carla_env.py b/easycarla/envs/carla_env.py
+index b04dfe2..eb60cac 100644
+--- a/easycarla/envs/carla_env.py
++++ b/easycarla/envs/carla_env.py
+@@ -47,8 +47,13 @@ class CarlaEnv(gym.Env):
+     
+         print('Connecting to Carla server...')
+         client = carla.Client('localhost', params['port'])
+-        client.set_timeout(10.0)
+-        self.world = client.load_world(params['town'])
++        client.set_timeout(120.0)  # local patch: Town03 load exceeds 10s on this machine
++        # local patch: reloading an already-loaded town intermittently crashes the
++        # source-built server (SkeletalMesh assert), so reuse the world if possible
++        world = client.get_world()
++        if params['town'] not in world.get_map().name:
++            world = client.load_world(params['town'])
++        self.world = world
+         self.world.set_weather(carla.WeatherParameters.ClearNoon)
+         print('Connection established!')
+     

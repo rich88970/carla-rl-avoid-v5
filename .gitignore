@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 評估/訓練輸出(非交付物;最終結果 CSV 已單獨放 data/)
+carla_rl/logs/
+carla_rl/checkpoints/
+carla_rl/archive_v1/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials*
+secrets*
+
+# Editors / notebooks
+.vscode/
+.idea/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Runtime / crash output
+*.log
+*.dmp
+crash*/
+wandb/
+runs/
+
+# Local datasets and replay buffers
+data/*.h5
+data/*.hdf5
+data/*.npz
+data/*.npy
+*.buffer.npz
+
+# Only publish reviewed final checkpoints
+checkpoints/*
+!checkpoints/sac_avoid_v5.pth
+
+# 展示影片改為僅存本機,不隨 repo 發布(見 README「影片」段落)
+videos/*.mp4

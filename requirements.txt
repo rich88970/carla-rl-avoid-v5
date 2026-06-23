@@ -1,0 +1,20 @@
+# CARLA RL 避撞 avoid_v5 — Python 3.10 相依套件(版本對齊本機驗證環境)
+# 安裝順序與前置(CARLA server、EasyCarla-RL、torch 索引)見 INSTALL.md。
+
+# CARLA Python API:必須與執行中的伺服器版本一致(本專案為 0.9.15 源碼建置)
+carla==0.9.15
+
+# 環境/數值
+gym==0.26.2
+numpy==1.24.4
+h5py==3.16.0
+
+# 影片錄製與繪圖
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+matplotlib==3.10.9
+
+# PyTorch(CUDA 12.1 建置)。+cu121 本地版本標識無法從 PyPI 解析,請改用官方索引安裝:
+#   pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+# 純 CPU(僅載入 checkpoint/評估、不訓練)可改用預設索引的 torch==2.5.1。
+torch==2.5.1
